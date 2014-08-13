@@ -1,27 +1,40 @@
-Name: perl
-Cartridge-Short-Name: PERL
-Display-Name: Perl 5.10
-Description: Perl is a high-level, general-purpose, interpreted, dynamic programming
-  language. Dynamic content produced by Perl scripts can be served in response to
-  incoming web requests.
-Version: '5.10'
-License: GPL v2
-License-Url: http://dev.perl.org/licenses/
-Vendor: perl.org
-Cartridge-Version: 0.0.18
-Compatible-Versions: []
-Cartridge-Vendor: hat
+---
+Name: php
+Cartridge-Short-Name: PHP
+Display-Name: PHP 5.4
+Description: 'PHP is a general-purpose server-side scripting language originally designed
+  for Web development to produce dynamic Web pages. Popular development frameworks
+  include: CakePHP, Zend, Symfony, and Code Igniter.'
+Version: '5.4'
+Provides:
+- php-5.4
+- php
+Versions:
+- '5.4'
+- '5.3'
+Version-Overrides:
+  '5.3':
+    Display-Name: PHP 5.3
+    Provides:
+    - php-5.3
+    - php
+License: The PHP License, version 3.0
+License-Url: http://www.php.net/license/3_0.txt
+Vendor: php.net
+Cartridge-Version: 0.0.21
+Compatible-Versions:
+- 0.0.20
+Cartridge-Vendor: redhat
 Categories:
 - service
-- perl
+- php
 - web_framework
-Website: http://www.perl.org
+Website: http://www.php.net
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
-Provides:
-- perl-5.10
-- perl
-Publishes: 
+Publishes:
+  get-php-ini:
+    Type: FILESYSTEM:php-ini
 Subscribes:
   set-env:
     Type: ENV:*
@@ -47,9 +60,7 @@ Endpoints:
     Backend: ''
     Options:
       websocket: true
-  - Frontend: "/health"
+  - Frontend: /health
     Backend: ''
     Options:
       health: true
-Install-Build-Required: false
-Source-Url: http://github.com/chunyunchen/latest_version_perl.git

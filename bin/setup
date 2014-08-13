@@ -5,14 +5,26 @@ case "$1" in
     version="$2"
 esac
 
-# Copy the version specific files to perl directory
+source ${OPENSHIFT_PHP_DIR}usr/lib/php_config
+
+# Copy the version specific files up to php directory
 shopt -s dotglob
-mkdir -p $OPENSHIFT_PERL_DIR/etc
-cp -r $OPENSHIFT_PERL_DIR/versions/$version/etc/* $OPENSHIFT_PERL_DIR/etc
 
-# Create/truncate Apache configuration file
-echo > $OPENSHIFT_PERL_DIR/etc/conf.d/openshift.conf
-echo > $OPENSHIFT_PERL_DIR/etc/conf.d/passenv.conf
-echo > $OPENSHIFT_PERL_DIR/etc/conf.d/server-status.conf
+mkdir -p ${OPENSHIFT_PHP_DIR}configuration/etc/php.d
+cp -Hr ${OPENSHIFT_PHP_DIR}usr/shared/etc/* ${OPENSHIFT_PHP_DIR}configuration/etc/
+if [[ -e ${OPENSHIFT_PHP_DIR}usr/$version/etc/conf.d ]]
+then
+    cp -Hr ${OPENSHIFT_PHP_DIR}usr/$version/etc/conf.d/* ${OPENSHIFT_PHP_DIR}configuration/etc/conf.d
+fi
+# Make sure this file exists
+echo > ${OPENSHIFT_PHP_DIR}/configuration/etc/php.d/openshift.ini
 
-echo $version >$OPENSHIFT_PERL_DIR/env/OPENSHIFT_PERL_VERSION
+# Create/truncate gear-editable Apache configuration files
+echo > $OPENSHIFT_PHP_DIR/configuration/etc/conf.d/openshift.conf
+echo > $OPENSHIFT_PHP_DIR/configuration/etc/conf.d/passenv.conf
+echo > $OPENSHIFT_PHP_DIR/configuration/etc/conf.d/performance.conf
+echo > $OPENSHIFT_PHP_DIR/configuration/etc/conf.d/server-status.conf
+
+mkdir -p ${OPENSHIFT_PHP_DIR}conf
+cp ${OPENSHIFT_PHP_DIR}usr/shared/etc/conf.d/performance.conf.erb ${OPENSHIFT_PHP_DIR}conf/performance.conf.erb
+cp ${OPENSHIFT_PHP_DIR}conf/performance.conf.erb ${OPENSHIFT_PHP_DIR}conf/performance.conf.erb.hidden
