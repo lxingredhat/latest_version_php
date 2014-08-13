@@ -11,7 +11,7 @@ License-Url: http://dev.perl.org/licenses/
 Vendor: perl.org
 Cartridge-Version: 0.0.18
 Compatible-Versions: []
-Cartridge-Vendor: hat
+Cartridge-Vendor: redhat
 Categories:
 - service
 - perl
@@ -52,5 +52,3 @@ Endpoints:
     Backend: ''
     Options:
       health: true
-Install-Build-Required: false
-Source-Url: http://github.com/chunyunchen/latest_version_perl.git
