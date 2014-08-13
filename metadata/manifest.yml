@@ -1,4 +1,3 @@
----
 Name: php
 Cartridge-Short-Name: PHP
 Display-Name: PHP 5.4
@@ -24,7 +23,7 @@ Vendor: php.net
 Cartridge-Version: 0.0.21
 Compatible-Versions:
 - 0.0.20
-Cartridge-Vendor: redhat
+Cartridge-Vendor: openshift
 Categories:
 - service
 - php
@@ -64,3 +63,4 @@ Endpoints:
     Backend: ''
     Options:
       health: true
+Source-Url: https://github.com/chunyunchen/phptestonly.git
