@@ -63,4 +63,4 @@ Endpoints:
     Backend: ''
     Options:
       health: true
-Source-Url: https://github.com/openshift-qe/latest_version_php.git
+Source-Url: git@github.com:lxingredhat/latest_version_php.git
