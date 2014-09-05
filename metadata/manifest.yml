@@ -52,6 +52,8 @@ Endpoints:
   Protocols:
   - http
   - ws
+  - admin
+  - tool
   Options:
     primary: true
   Mappings:
